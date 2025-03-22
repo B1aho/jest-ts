@@ -2,7 +2,7 @@ export function capitalize(str: string): string {
     const newStr = Array.from(str);
     let i = 0;
 
-    while (!isLetter(newStr[i]) && str.length) i++;
+    while (!isLetter(newStr[i]) && i < str.length) i++;
 
     newStr[i] = str.charAt(i).toUpperCase();
 
@@ -10,5 +10,5 @@ export function capitalize(str: string): string {
 };
 
 function isLetter(char: string): boolean {
-    return /^[a-zA-Z]$/.test(char);
+    return /^[\p{Letter}]$/u.test(char);
 }

@@ -6,11 +6,15 @@ describe('Basic cases for capitilize function', () => {
     });
 
     it("Can capitalize word", () => {
-        expect(capitalize('word')).toBe('Word');
+        expect(capitalize('cat')).toBe('Cat');
     });
 
-    it("Can capitalize otherWord", () => {
-        expect(capitalize('otherWord')).toBe('OtherWord');
+    it("Can capitalize one letter", () => {
+        expect(capitalize('m')).toBe('M');
+    });
+
+    it("Can capitalize word-2", () => {
+        expect(capitalize('dog')).toBe('Dog');
     });
 })
 
@@ -29,5 +33,9 @@ describe("Advance cases for function", () => {
 
     it("Handle empty string", () => {
         expect(capitalize("")).toBe("");
+    })
+
+    it("Handle other language string", () => {
+        expect(capitalize("привет")).toBe("Привет");
     })
 })
