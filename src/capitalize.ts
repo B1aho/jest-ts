@@ -1,3 +1,5 @@
 export function capitalize(str: string): string {
-    return "Word";
+    const newStr = Array.from(str);
+    newStr[0] = str.charAt(0).toUpperCase()
+    return newStr.join('');
 };

@@ -1,9 +1,15 @@
 import { capitalize } from "./capitalize";
 
-it("capitalize exist", () => {
-    expect(capitalize).toBeDefined();
-});
+describe('Basic tests for capitilize function', () => {
+    it("Function exist", () => {
+        expect(capitalize).toBeDefined();
+    });
 
-it("Capitalize word", () => {
-    expect(capitalize('word')).toBe('Word');
-});
+    it("Can capitalize word", () => {
+        expect(capitalize('word')).toBe('Word');
+    });
+
+    it("Can capitalize otherWord", () => {
+        expect(capitalize('otherWord')).toBe('OtherWord');
+    });
+})
