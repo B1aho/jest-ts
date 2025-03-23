@@ -165,57 +165,184 @@ describe("Test cases for multiplication operator", () => {
         expect(calculator.multiple(101, 2000)).toBe(202000);
     });
 
-    it("Multiplication float number", () => {
+    it("Multiple float number", () => {
         expect(calculator.multiple(0.00123, 0.1234)).toBe(0.000151782);
     });
 
-    it("Multiplication with NaN", () => {
+    it("Multiple with NaN", () => {
         expect(calculator.multiple(NaN, 123)).toBe(NaN);
     });
 
-    it("Multiplication with infinite values #1", () => {
+    it("Multiple with infinite values #1", () => {
         expect(calculator.multiple(Infinity, 123)).toBe(Infinity);
     });
 
-    it("Multiplication with infinite values #2", () => {
+    it("Multiple with infinite values #2", () => {
         expect(calculator.multiple(-Infinity, -123)).toBe(Infinity);
     });
 
-    it("Multiplication with infinite values #3", () => {
+    it("Multiple with infinite values #3", () => {
         expect(calculator.multiple(-Infinity, Infinity)).toBe(-Infinity);
     });
 
-    it("Multiplication with infinite values #4", () => {
+    it("Multiple with infinite values #4", () => {
         expect(calculator.multiple(Infinity, 0)).toBe(NaN);
     });
 
-    it("Multiplication with bigint values #1", () => {
+    it("Multiple with bigint values #1", () => {
         expect(calculator
             .multiple(1122121323213123213312312321n, 1232132132213123123112312312n))
             .toBe(1382601738572396596111291415883078685030873457837596152n);
     });
 
-    it("Multiplication with bigint mix number", () => {
+    it("Multiple with bigint mix number", () => {
         expect(calculator
             .multiple(9007199254740991n, 10))
             .toBe(90071992547409910n);
     });
 
-    it("Multiplication with bigint mix number infinite #1", () => {
+    it("Multiple with bigint mix number infinite #1", () => {
         expect(calculator
             .multiple(9007199254741001n, Infinity))
             .toBe(Infinity);
     });
 
-    it("Multiplication with bigint mix number infinite #2", () => {
+    it("Multiple with bigint mix number infinite #2", () => {
         expect(calculator
             .multiple(9007199254741001n, -Infinity))
             .toBe(-Infinity);
     });
 
-    it("Multiplication with bigint mix NaN", () => {
+    it("Multiple with bigint mix NaN", () => {
         expect(calculator
             .multiple(9007199254741001n, NaN))
             .toBe(NaN);
     });
+});
+
+describe("Test cases for division operator", () => {
+    it("Basic division #1", () => {
+        expect(calculator.divide(10, 5)).toBe(2);
+    });
+
+    it("Basic division #2", () => {
+        expect(calculator.divide(101, 2000)).toBe(0.0505);
+    });
+
+    it("Basic division #3", () => {
+        expect(calculator.divide(101, 0)).toBe(Infinity);
+    });
+
+    it("Basic division #4", () => {
+        expect(calculator.divide(0, 0)).toBe(NaN);
+    });
+
+    it("Basic division #5", () => {
+        expect(calculator.divide(0, 12)).toBe(0);
+    });
+
+    it("Divide float number", () => {
+        expect(calculator.divide(0.00123, 0.1234)).toBeCloseTo(0.009967585);
+    });
+
+    it("Divide with NaN", () => {
+        expect(calculator.divide(NaN, 123)).toBe(NaN);
+    });
+
+    it("Divide with infinite values #1", () => {
+        expect(calculator.divide(Infinity, 123)).toBe(Infinity);
+    });
+
+    it("Divide with infinite values #2", () => {
+        expect(calculator.divide(-Infinity, -123)).toBe(Infinity);
+    });
+
+    it("Divide with infinite values #3", () => {
+        expect(calculator.divide(-Infinity, Infinity)).toBe(NaN);
+    });
+
+    it("Divide with infinite values #4", () => {
+        expect(calculator.divide(Infinity, 0)).toBe(Infinity);
+    });
+
+    it("Divide with bigint values #1", () => {
+        expect(calculator
+            .divide(1122121323213123213312312321n, 1232132132213123123112312312n))
+            .toBe(NaN);
+    });
+
+    it("Divide with bigint values #2", () => {
+        expect(calculator
+            .divide(1122121323213123213312312321n, 0))
+            .toBe(NaN);
+    });
+
+    it("Divide with bigint mix number", () => {
+        expect(calculator
+            .divide(90071992547409910n, 10))
+            .toBe(9007199254740991n);
+    });
+
+    it("Divide with bigint mix number infinite #1", () => {
+        expect(calculator
+            .divide(9007199254741001n, Infinity))
+            .toBe(Infinity);
+    });
+
+    it("Divide with bigint mix number infinite #2", () => {
+        expect(calculator
+            .divide(9007199254741001n, -Infinity))
+            .toBe(-Infinity);
+    });
+
+    it("Divide with bigint mix NaN", () => {
+        expect(calculator
+            .divide(9007199254741001n, NaN))
+            .toBe(NaN);
+    });
+});
+
+describe("Test cases for pow operator", () => {
+    it("Basic pow #1", () => {
+        expect(calculator.pow(2, 10)).toBe(1024);
+    });
+
+    it("Basic pow #2", () => {
+        expect(calculator.pow(2, -10)).toBeCloseTo(0.0009765625);
+    });
+
+    it("Pow with float exponent", () => {
+        expect(calculator.pow(100, 0.5)).toBe(10);
+    });
+
+    it("Pow with zero exponent", () => {
+        expect(calculator.pow(102330, 0)).toBe(1);
+    });
+
+    it("Pow zero", () => {
+        expect(calculator.pow(0, 121342)).toBe(0);
+    });
+
+    it("Pow negative value", () => {
+        expect(calculator.pow(-32, 9)).toBe(-35184372088832);
+    });
+
+    it("Pow with NaN", () => {
+        expect(calculator.pow(2, NaN)).toBe(NaN);
+    });
+
+    it("Pow with Infinity", () => {
+        expect(calculator.pow(2, Infinity)).toBe(Infinity);
+    });
+
+    it("Pow with BigInt", () => {
+        expect(calculator.pow(1000000000000000000n, 2))
+            .toBe(1000000000000000000000000000000000000n);
+    });
+
+    it("Pow with BigInt and negative exponent", () => {
+        expect(() => calculator.pow(1000000000000000000n, -2))
+            .toThrow("The exponent must be a non-negative number");
+    });
+
 });

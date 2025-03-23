@@ -5,7 +5,7 @@ interface ICalculator {
     substract: binaryOperator;
     divide: binaryOperator;
     multiple: binaryOperator;
-    pow: binaryOperator;
+    pow: (x: number | bigint, n: number) => number | bigint;
     isFloat: (x: number) => boolean;
     isBigInt: (x: number | bigint) => boolean;
 }
@@ -51,16 +51,45 @@ export const calculator: ICalculator = {
             }
             return (BigInt(x) * BigInt(y));
         }
-        let sum = Number(x) * Number(y);
-        return this.isFloat(sum) ? parseFloat(sum.toFixed(10)) : sum;
+        let multiplication = Number(x) * Number(y);
+        return this.isFloat(multiplication) ? parseFloat(multiplication.toFixed(10)) : multiplication;
     },
 
     divide(x, y) {
-        return 0;
+        if (this.isBigInt(x) || this.isBigInt(y)) {
+            if (isNaN(Number(x)) || isNaN(Number(y))) return NaN;
+            if (!isFinite(Number(x)) || !isFinite(Number(y))) {
+                return !isFinite(Number(x)) ? x : y;
+            }
+            if (y === 0n || y === 0) return NaN;
+            return (BigInt(x) % BigInt(y) === 0n) ? BigInt(x) / BigInt(y) : NaN;
+        }
+        let division = Number(x) / Number(y);
+        return this.isFloat(division) ? parseFloat(division.toFixed(10)) : division;
     },
 
+    // Fast pow algorithm - O(logn)
     pow(x, n) {
-        return 0;
+        if (n < 0 && typeof x === "bigint")
+            throw ("The exponent must be a non-negative number");
+        if (typeof x === "bigint")
+            return x ** BigInt(n);
+        const isValidForFastPow = this.isFloat(n) || isNaN(x) || isNaN(n) || !isFinite(x) || !isFinite(n);
+        if (isValidForFastPow)
+            return x ** n;
+        if (n < 0) {
+            x = 1 / Number(x);
+            n = -n;
+        }
+        let result = 1;
+        while (n > 0) {
+            if (n % 2 === 1) {
+                result *= x;
+            }
+            x *= x;
+            n = Math.floor(n / 2);
+        }
+        return result;
     },
 
 }
