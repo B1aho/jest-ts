@@ -1,3 +1,3 @@
 export function reverseString(str: string): string {
-    return str.split('').reverse().join('');
+    return Array.from(str).reverse().join('');
 }

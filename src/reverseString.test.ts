@@ -23,4 +23,23 @@ describe("Basic test cases", () => {
 });
 
 describe("Advance test cases", () => {
+    it("Reverse string with trail/tail spaces", () => {
+        expect(reverseString("   hello   ")).toBe("   olleh   ");
+    });
+
+    it("Reverse string with between spaces", () => {
+        expect(reverseString("hel   lo")).toBe("ol   leh");
+    });
+
+    it("Reverse string with different language", () => {
+        expect(reverseString("Привет, как дела?")).toBe("?алед как ,тевирП");
+    });
+
+    it("Reverse string with emojis", () => {
+        expect(reverseString("Awesome🚀🔥")).toBe("🔥🚀emosewA");
+    });
+
+    it("Handle long string", () => {
+        expect(reverseString("a".repeat(10000))).toBe("a".repeat(10000));
+    });
 });
