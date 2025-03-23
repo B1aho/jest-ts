@@ -1,15 +1,15 @@
 import { reverseString } from "./reverseString"
 
-describe("Basic test cases", () => {
+describe("Base test cases", () => {
     it("Function exist", () => {
-        expect(reverseString).toBeDefined();
+        expect(typeof reverseString).toBe("function");
     });
 
-    it("Reverse simple string", () => {
+    it("Reverse simple string #1", () => {
         expect(reverseString("abcdefg")).toBe("gfedcba");
     });
 
-    it("Reverse simple string-2", () => {
+    it("Reverse simple string #2", () => {
         expect(reverseString("QWERTY")).toBe("YTREWQ");
     });
 
@@ -23,7 +23,7 @@ describe("Basic test cases", () => {
 });
 
 describe("Advance test cases", () => {
-    it("Reverse string with trail/tail spaces", () => {
+    it("Reverse string with trail spaces", () => {
         expect(reverseString("   hello   ")).toBe("   olleh   ");
     });
 
