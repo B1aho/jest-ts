@@ -1,3 +1,3 @@
 export function reverseString(str: string): string {
-    return "gfedcba";
+    return str.split('').reverse().join('');
 }
