@@ -155,3 +155,67 @@ describe("Test cases for substarct operator", () => {
             .toBe(NaN);
     });
 })
+
+describe("Test cases for multiplication operator", () => {
+    it("Basic multiplication #1", () => {
+        expect(calculator.multiple(10, 5)).toBe(50);
+    });
+
+    it("Basic multiplication #2", () => {
+        expect(calculator.multiple(101, 2000)).toBe(202000);
+    });
+
+    it("Multiplication float number", () => {
+        expect(calculator.multiple(0.00123, 0.1234)).toBe(0.000151782);
+    });
+
+    it("Multiplication with NaN", () => {
+        expect(calculator.multiple(NaN, 123)).toBe(NaN);
+    });
+
+    it("Multiplication with infinite values #1", () => {
+        expect(calculator.multiple(Infinity, 123)).toBe(Infinity);
+    });
+
+    it("Multiplication with infinite values #2", () => {
+        expect(calculator.multiple(-Infinity, -123)).toBe(Infinity);
+    });
+
+    it("Multiplication with infinite values #3", () => {
+        expect(calculator.multiple(-Infinity, Infinity)).toBe(-Infinity);
+    });
+
+    it("Multiplication with infinite values #4", () => {
+        expect(calculator.multiple(Infinity, 0)).toBe(NaN);
+    });
+
+    it("Multiplication with bigint values #1", () => {
+        expect(calculator
+            .multiple(1122121323213123213312312321n, 1232132132213123123112312312n))
+            .toBe(1382601738572396596111291415883078685030873457837596152n);
+    });
+
+    it("Multiplication with bigint mix number", () => {
+        expect(calculator
+            .multiple(9007199254740991n, 10))
+            .toBe(90071992547409910n);
+    });
+
+    it("Multiplication with bigint mix number infinite #1", () => {
+        expect(calculator
+            .multiple(9007199254741001n, Infinity))
+            .toBe(Infinity);
+    });
+
+    it("Multiplication with bigint mix number infinite #2", () => {
+        expect(calculator
+            .multiple(9007199254741001n, -Infinity))
+            .toBe(-Infinity);
+    });
+
+    it("Multiplication with bigint mix NaN", () => {
+        expect(calculator
+            .multiple(9007199254741001n, NaN))
+            .toBe(NaN);
+    });
+});

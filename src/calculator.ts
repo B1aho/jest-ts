@@ -43,11 +43,19 @@ export const calculator: ICalculator = {
         return this.isFloat(substraction) ? parseFloat(substraction.toFixed(10)) : substraction;
     },
 
-    divide(x, y) {
-        return 0;
+    multiple(x, y) {
+        if (this.isBigInt(x) || this.isBigInt(y)) {
+            if (isNaN(Number(x)) || isNaN(Number(y))) return NaN;
+            if (!isFinite(Number(x)) || !isFinite(Number(y))) {
+                return !isFinite(Number(x)) ? x : y;
+            }
+            return (BigInt(x) * BigInt(y));
+        }
+        let sum = Number(x) * Number(y);
+        return this.isFloat(sum) ? parseFloat(sum.toFixed(10)) : sum;
     },
 
-    multiple(x, y) {
+    divide(x, y) {
         return 0;
     },
 
