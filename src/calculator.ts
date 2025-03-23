@@ -32,7 +32,15 @@ export const calculator: ICalculator = {
     },
 
     substract(x, y) {
-        return 0;
+        if (this.isBigInt(x) || this.isBigInt(y)) {
+            if (isNaN(Number(x)) || isNaN(Number(y))) return NaN;
+            if (!isFinite(Number(x)) || !isFinite(Number(y))) {
+                return !isFinite(Number(x)) ? x : -y;
+            }
+            return (BigInt(x) - BigInt(y));
+        }
+        let substraction = Number(x) - Number(y);
+        return this.isFloat(substraction) ? parseFloat(substraction.toFixed(10)) : substraction;
     },
 
     divide(x, y) {

@@ -51,6 +51,10 @@ describe("Test cases for add operator", () => {
         expect(calculator.add(-Infinity, Infinity)).toBe(NaN);
     });
 
+    it("Add with infinite values #4", () => {
+        expect(calculator.add(Infinity, Infinity)).toBe(Infinity);
+    });
+
     it("Add with bigint values #1", () => {
         expect(calculator
             .add(1122121323213123213312312321n, 1232132132213123123112312312n))
@@ -69,10 +73,16 @@ describe("Test cases for add operator", () => {
             .toBe(9007199254741011n);
     });
 
-    it("Add with bigint mix number infinite", () => {
+    it("Add with bigint mix number infinite #1", () => {
         expect(calculator
             .add(9007199254741001n, Infinity))
             .toBe(Infinity);
+    });
+
+    it("Add with bigint mix number infinite #2", () => {
+        expect(calculator
+            .add(9007199254741001n, -Infinity))
+            .toBe(-Infinity);
     });
 
     it("Add with bigint mix NaN", () => {
@@ -81,3 +91,67 @@ describe("Test cases for add operator", () => {
             .toBe(NaN);
     });
 });
+
+describe("Test cases for substarct operator", () => {
+    it("Basic substraction #1", () => {
+        expect(calculator.substract(10, 5)).toBe(5);
+    });
+
+    it("Basic substraction #2", () => {
+        expect(calculator.substract(101, 2000)).toBe(-1899);
+    });
+
+    it("Substract float number", () => {
+        expect(calculator.substract(0.00123, 0.1234)).toBe(-0.12217);
+    });
+
+    it("Substarct with NaN", () => {
+        expect(calculator.substract(NaN, 123)).toBe(NaN);
+    });
+
+    it("Substract with infinite values #1", () => {
+        expect(calculator.substract(Infinity, 123)).toBe(Infinity);
+    });
+
+    it("Substract with infinite values #2", () => {
+        expect(calculator.substract(-Infinity, 123)).toBe(-Infinity);
+    });
+
+    it("Substarct with infinite values #3", () => {
+        expect(calculator.substract(Infinity, Infinity)).toBe(NaN);
+    });
+
+    it("Substarct with infinite values #4", () => {
+        expect(calculator.substract(-Infinity, Infinity)).toBe(-Infinity);
+    });
+
+    it("Substract with bigint values #1", () => {
+        expect(calculator
+            .substract(1122121323213123213312312321n, 1232132132213123123112312312n))
+            .toBe(-110010808999999909799999991n);
+    });
+
+    it("Substract with bigint mix number", () => {
+        expect(calculator
+            .substract(9007199254741001n, 10))
+            .toBe(9007199254740991n);
+    });
+
+    it("Substract with bigint mix number infinite #1", () => {
+        expect(calculator
+            .substract(9007199254741001n, Infinity))
+            .toBe(-Infinity);
+    });
+
+    it("Substract with bigint mix number infinite #2", () => {
+        expect(calculator
+            .substract(Infinity, 9007199254741001n))
+            .toBe(Infinity);
+    });
+
+    it("Substarct with bigint mix NaN", () => {
+        expect(calculator
+            .substract(9007199254741001n, NaN))
+            .toBe(NaN);
+    });
+})
