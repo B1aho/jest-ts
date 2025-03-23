@@ -13,6 +13,8 @@ export function caesarCipher(str: string, offset: number): string {
                 charCode -= 26;
             else if (charCode < 65)
                 charCode += 26;
+        } else {
+            charCode -= offset;
         }
         return String.fromCharCode(charCode);
     });
