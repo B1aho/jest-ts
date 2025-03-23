@@ -28,4 +28,14 @@ describe("Advance test cases", () => {
             length: 6
         });
     });
+
+    it("Unsorted array", () => {
+        expect(analyzeArray([1, 8, 3, -4, 2, 6, 12, 1, -22, 3, 4, 66, 434, 3, 2, 34, 44, 4, 55, 435, 436, 55, 86, 8799, 998, 80, 43, -2]))
+            .toEqual({
+                average: 12,
+                min: -22,
+                max: 8799,
+                length: 28
+            });
+    });
 });
